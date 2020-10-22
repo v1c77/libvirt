@@ -4899,6 +4899,10 @@ qemuOpenChrChardevUNIXSocket(const virDomainChrSourceDef *dev)
 
     memset(&addr, 0, sizeof(addr));
     addr.sun_family = AF_UNIX;
+    virReportError(VIR_ERR_INTERNAL_ERROR,
+                   _("yuhua whant to know the path: '%s'"),
+                   dev->data.nix.path);
+
     if (virStrcpyStatic(addr.sun_path, dev->data.nix.path) == NULL) {
         virReportError(VIR_ERR_INTERNAL_ERROR,
                        _("UNIX socket path '%s' too long"),
